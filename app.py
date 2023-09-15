@@ -31,6 +31,7 @@ def upload():
     file.save(save_path)
 
     # step 3. load pre module
+    model = YOLO("yolov8n.pt")
     model = YOLO("runs/detect/train4/weights/best.pt")
 
     im1 = Image.open(save_path)
