@@ -1,0 +1,23 @@
+version: 0.0.1
+examples:
+      - context: # 对话历史
+          - role: user
+            content: 请帮我解析下这张图片中的类别
+          - role: bot
+            # 触发插件
+            plugin:
+              # 应当触发的接口operationId
+              operationId: getPicInfo
+              # 思考过程，对触发有帮助
+              thoughts: 这是一个解析图片类别的需求
+              requestArguments: 
+                file: object
+                query: 请帮我解析下这张图片中的类别
+      # 反例，无需触发此插件的任一某个接口
+      - context:
+          - role: user
+            content: 请帮我根据此图片画类似的图片
+          - role: bot
+            # 无需触发
+            plugin:  
+              thoughts: 我不需要使用以上工具

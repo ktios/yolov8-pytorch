@@ -1,0 +1,44 @@
+openapi: 3.0.1
+info:
+    title: 图片识别
+    description: 实现图片的分类和计数
+    version: "v1"
+servers:
+    - url: PLUGIN_HOST
+paths:
+    /get_pic_info:
+        post:
+            operationId: getPicInfo
+            summary: 解析图片
+            requestBody:
+                required: true
+                content:
+                    application/x-www-form-urlencoded:
+                        schema:
+                            $ref: "#/components/schemas/getPicInfo"
+            responses:
+                "200":
+                    description: 图片信息
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/respPicInfo"
+components:
+    schemas:
+        getPicInfo:
+            type: object
+            required: [pic]
+            properties:
+                pic:
+                    type: object
+                    description: 图片
+
+        respPicInfo:
+            type: object
+            required: [clses]
+            properties:
+                clses:
+                    type: array
+                    items:
+                        type: string
+                        description: 类别
